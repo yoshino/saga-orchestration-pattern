@@ -3,4 +3,6 @@ class Order < ApplicationRecord
 
   has_one :create_order_saga
   has_many :order_events
+
+  validates :status, presence: true
 end
