@@ -33,5 +33,8 @@ module SagaOrchestrationPattern
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # ref: https://github.com/rails/rails/pull/33145
+    config.hosts << ENV["DEFAULT_HOST"]
   end
 end
