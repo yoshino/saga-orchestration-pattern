@@ -15,6 +15,9 @@ ActiveRecord::Schema.define(version: 2020_08_26_094501) do
   create_table "create_order_sagas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "status", default: 0, null: false
     t.bigint "order_id"
+    t.string "consumer_name"
+    t.string "food_name"
+    t.string "credit_card_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_create_order_sagas_on_order_id"

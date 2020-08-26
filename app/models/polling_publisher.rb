@@ -3,11 +3,11 @@ class PollingPublisher
 
   def polling
     while true do
-      publish
+      publish_order_event
     end
   end
 
-  def publish
+  def publish_order_event
     OrderEvent.all.each do |event|
       message_id = topic.publish(message: event.message.to_json)
       event.destroy! if message_id

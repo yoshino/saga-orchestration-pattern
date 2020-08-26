@@ -8,8 +8,7 @@ class CreateOrderSaga < ApplicationRecord
 
     event :verify_consumer do
       before do
-        # request ConsumerService to verify consumer
-        # if ConsumerService verify consumer,  ConsumerService publish the event to SNS.
+        Services::ConsumerService.verify_consumer
       end
 
       transition :initialized => :consumer_verifing
