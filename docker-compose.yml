@@ -29,6 +29,24 @@ services:
     depends_on:
       - db
 
+  polling_publisher:
+    build:
+      context: .
+      dockerfile: containers/rails/Dockerfile
+    environment:
+      - BUNDLE_PATH=/bundle
+      - DEFAULT_HOST=.example.com
+    tty: true
+    stdin_open: true
+    command: bundle exec rails runner PollingPublisher.new.polling
+    volumes:
+      - .:/app
+      - bundle:/bundle
+    ports:
+      - "3100:3100"
+    depends_on:
+      - db
+
 volumes:
   db-data:
   bundle:

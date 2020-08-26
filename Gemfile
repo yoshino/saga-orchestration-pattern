@@ -27,6 +27,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'stateful_enum'
 gem 'rspec-rails', '~> 4.0.1'
+gem 'aws-sdk-sns'
+gem 'config'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
