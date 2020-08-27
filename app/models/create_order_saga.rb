@@ -8,7 +8,7 @@ class CreateOrderSaga < ApplicationRecord
 
     event :verify_consumer do
       before do
-        Services::ConsumerService.verify_consumer
+        Services::ConsumerService.verify_consumer(order_id, consumer_name)
       end
 
       transition :initialized => :consumer_verifing
@@ -19,8 +19,7 @@ class CreateOrderSaga < ApplicationRecord
     # else :consummer_verifing => :order_rejecting
     event :create_ticket do
       before do
-        # request KitchenService to create ticket
-        # if KitchenService create ticket,  KitchenService publish the event to SNS.
+        Services::KitchenService.create_ticket(order_id, food_name)
       end
 
       transition :consumer_verifing => :ticket_creating
@@ -31,8 +30,7 @@ class CreateOrderSaga < ApplicationRecord
     # else :ticket_creating => :order_rejecting
     event :authorize_card do
       before do
-        # request AccountingService to aurhorize card
-        # if AccountingService aurhorize card,  AccountingService publish the event to SNS.
+        Services::AccountingService.authorize_card(order_id, credit_card_number)
       end
 
       transition :ticket_creating => :card_authorizing
@@ -43,7 +41,7 @@ class CreateOrderSaga < ApplicationRecord
     # else :card_authorizing => :ticket_rejecting
     event :approve_ticket do
       before do
-        # request KitchenService to approce ticket
+        Services::KitchenService.approve_ticket(order_id)
       end
 
       after do
