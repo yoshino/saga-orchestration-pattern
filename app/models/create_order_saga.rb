@@ -104,7 +104,7 @@ class CreateOrderSaga < ApplicationRecord
 
     event :reject_ticket do
       before do
-        # request KitchenService to reject ticket
+        Services::KitchenService.reject_ticket(order_id)
       end
 
       after do
