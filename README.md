@@ -17,6 +17,9 @@ Implement each business transaction that spans multiple services is a saga. A sa
 
 
 ## Example by Ruby on Rails
+![pattern (1)](https://user-images.githubusercontent.com/17586662/92989093-64eeb680-f50c-11ea-8562-30edd4384cb0.png)
+
+
 ### 1: Create order and create_order_saga
 If you need to publish event, you should use [Pattern: transactional outbox + polling-publisher](https://github.com/yoshino/transactional-outbox_polling-publisher-pattern).
 
